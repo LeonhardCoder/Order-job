@@ -1,0 +1,299 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="newprueba" Class="dbArtekWebDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=LAPTOP-PNE5D04H\SA;Initial Catalog=newprueba;Persist Security Info=True;User ID=sa" SettingsObjectName="AccesoDatos.Properties.Settings" SettingsPropertyName="newpruebaConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Actividad" Member="Actividad">
+    <Type Name="Actividad">
+      <Column Name="Id_Actividad" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Act_Descripcion" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="Act_Estado" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Association Name="Actividad_DetalleOT" Member="DetalleOT" ThisKey="Id_Actividad" OtherKey="Id_Actividad" Type="DetalleOT" />
+    </Type>
+  </Table>
+  <Table Name="dbo.BodegaMateriales" Member="BodegaMateriales">
+    <Type Name="BodegaMateriales">
+      <Column Name="Id_BodegaMaterial" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Id_Materiales" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Id_Tecnologia" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="BMat_CantidadIngreso" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BMat_CantidadSalida" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BMat_CantidadExistente" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BMat_FechaIngreso" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="BMat_ActaEntrega" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="BMat_Observaciones" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="BMat_Estado" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Association Name="BodegaMateriales_DetalleMateriales" Member="DetalleMateriales" ThisKey="Id_BodegaMaterial" OtherKey="Id_BodegaMaterial" Type="DetalleMateriales" />
+      <Association Name="Materiales_BodegaMateriales" Member="Materiales" ThisKey="Id_Materiales" OtherKey="Id_Materiales" Type="Materiales" IsForeignKey="true" />
+      <Association Name="Tecnologia_BodegaMateriales" Member="Tecnologia" ThisKey="Id_Tecnologia" OtherKey="Id_Tecnologia" Type="Tecnologia" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Ciudad" Member="Ciudad">
+    <Type Name="Ciudad">
+      <Column Name="Id_Ciudad" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Ciu_Nombre" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Ciu_Estado" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="Id_Provincia" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Ciudad_Clientes_Ciudad" Member="Clientes_Ciudad" ThisKey="Id_Ciudad" OtherKey="Id_Ciudad" Type="Clientes_Ciudad" />
+      <Association Name="Provincia_Ciudad" Member="Provincia" ThisKey="Id_Provincia" OtherKey="Id_Provincia" Type="Provincia" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ClienteFinal" Member="ClienteFinal">
+    <Type Name="ClienteFinal">
+      <Column Name="Id_ClienteFinal" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Cli_Nombre" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Cli_Direccion" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Cli_Estado" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Association Name="ClienteFinal_Clientes_Ciudad" Member="Clientes_Ciudad" ThisKey="Id_ClienteFinal" OtherKey="Id_ClienteFinal" Type="Clientes_Ciudad" />
+      <Association Name="ClienteFinal_Clientes_Operadora" Member="Clientes_Operadora" ThisKey="Id_ClienteFinal" OtherKey="Id_ClienteFinal" Type="Clientes_Operadora" />
+      <Association Name="ClienteFinal_OrdenTrabajo" Member="OrdenTrabajo" ThisKey="Id_ClienteFinal" OtherKey="Id_ClienteFinal" Type="OrdenTrabajo" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Clientes_Ciudad" Member="Clientes_Ciudad">
+    <Type Name="Clientes_Ciudad">
+      <Column Name="Id_ClientesCiudad" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Id_Ciudad" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Id_ClienteFinal" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CCiu_NombreSucursal" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CCiu_Direccion" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="CCiu_Estado" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Association Name="Ciudad_Clientes_Ciudad" Member="Ciudad" ThisKey="Id_Ciudad" OtherKey="Id_Ciudad" Type="Ciudad" IsForeignKey="true" />
+      <Association Name="ClienteFinal_Clientes_Ciudad" Member="ClienteFinal" ThisKey="Id_ClienteFinal" OtherKey="Id_ClienteFinal" Type="ClienteFinal" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Clientes_Operadora" Member="Clientes_Operadora">
+    <Type Name="Clientes_Operadora">
+      <Column Name="Id_ClienteOperadora" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Id_ClienteExterno" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Id_ClienteFinal" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Id_Operadora" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CO_Estado" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Association Name="ClienteFinal_Clientes_Operadora" Member="ClienteFinal" ThisKey="Id_ClienteFinal" OtherKey="Id_ClienteFinal" Type="ClienteFinal" IsForeignKey="true" />
+      <Association Name="Operadora_Clientes_Operadora" Member="Operadora" ThisKey="Id_Operadora" OtherKey="Id_Operadora" Type="Operadora" IsForeignKey="true" />
+      <Association Name="ClienteExterno_Clientes_Operadora" Member="ClienteExterno" ThisKey="Id_ClienteExterno" OtherKey="Id_ClienteExterno" Type="ClienteExterno" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DetalleMateriales" Member="DetalleMateriales">
+    <Type Name="DetalleMateriales">
+      <Column Name="Id_DetalleMateriales" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Id_DetalleOT" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Id_BodegaMaterial" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="DMat_SalidaMaterial" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DMat_Estado" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Association Name="BodegaMateriales_DetalleMateriales" Member="BodegaMateriales" ThisKey="Id_BodegaMaterial" OtherKey="Id_BodegaMaterial" Type="BodegaMateriales" IsForeignKey="true" />
+      <Association Name="DetalleOT_DetalleMateriales" Member="DetalleOT" ThisKey="Id_DetalleOT" OtherKey="Id_DetalleOT" Type="DetalleOT" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DetalleOT" Member="DetalleOT">
+    <Type Name="DetalleOT">
+      <Column Name="Id_DetalleOT" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Id_Actividad" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Id_OrdeTrabajo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Det_DescripcionAct" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Det_ImagenCliente" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Det_ImagenNodo" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Det_Observaciones" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Det_cantidad" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Det_Estado" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Association Name="DetalleOT_DetalleMateriales" Member="DetalleMateriales" ThisKey="Id_DetalleOT" OtherKey="Id_DetalleOT" Type="DetalleMateriales" />
+      <Association Name="DetalleOT_DetalleOT_Usuarios" Member="DetalleOT_Usuarios" ThisKey="Id_DetalleOT" OtherKey="Id_DetalleOT" Type="DetalleOT_Usuarios" />
+      <Association Name="Actividad_DetalleOT" Member="Actividad" ThisKey="Id_Actividad" OtherKey="Id_Actividad" Type="Actividad" IsForeignKey="true" />
+      <Association Name="OrdenTrabajo_DetalleOT" Member="OrdenTrabajo" ThisKey="Id_OrdeTrabajo" OtherKey="Id_OrdeTrabajo" Type="OrdenTrabajo" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DetalleOT_Usuarios" Member="DetalleOT_Usuarios">
+    <Type Name="DetalleOT_Usuarios">
+      <Column Name="Id_Detalle" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Id_DetalleOT" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Id_Usuario" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="DUsu_FechaInicioTrabajos" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DUsu_FechaFinTrabajos" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DUsu_Estado" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Association Name="DetalleOT_DetalleOT_Usuarios" Member="DetalleOT" ThisKey="Id_DetalleOT" OtherKey="Id_DetalleOT" Type="DetalleOT" IsForeignKey="true" />
+      <Association Name="Usuario_DetalleOT_Usuarios" Member="Usuario" ThisKey="Id_Usuario" OtherKey="Id_Usuario" Type="Usuario" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Materiales" Member="Materiales">
+    <Type Name="Materiales">
+      <Column Name="Id_Materiales" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Mat_Nombre" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Mat_Descripcion" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Mat_Estado" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="Id_TipoMaterial" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Materiales_BodegaMateriales" Member="BodegaMateriales" ThisKey="Id_Materiales" OtherKey="Id_Materiales" Type="BodegaMateriales" />
+      <Association Name="TipoMaterial_Materiales" Member="TipoMaterial" ThisKey="Id_TipoMaterial" OtherKey="Id_TipoMaterial" Type="TipoMaterial" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Menus" Member="Menus">
+    <Type Name="Menus">
+      <Column Name="MenuId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ParentMenuId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Url" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Operadora" Member="Operadora">
+    <Type Name="Operadora">
+      <Column Name="Id_Operadora" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Ope_Nombre" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Ope_Direccion" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Ope_Telefono" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Ope_FechaCreacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Ope_Logo" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Ope_Estado" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Association Name="Operadora_Clientes_Operadora" Member="Clientes_Operadora" ThisKey="Id_Operadora" OtherKey="Id_Operadora" Type="Clientes_Operadora" />
+      <Association Name="Operadora_Tecnologia" Member="Tecnologia" ThisKey="Id_Operadora" OtherKey="Id_Operadora" Type="Tecnologia" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OrdenTrabajo" Member="OrdenTrabajo">
+    <Type Name="OrdenTrabajo">
+      <Column Name="Id_OrdeTrabajo" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Id_Tecnologia" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Id_ClienteFinal" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Id_Usuario" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Id_TipoTrabajo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="OT_FechaSolicitud" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="OT_FechaCierre" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="OT_DescripcionOT" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="OT_TicketCliente" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="OT_NombreNodo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="OT_Estado" Type="System.String" DbType="Char(50)" CanBeNull="true" />
+      <Association Name="OrdenTrabajo_DetalleOT" Member="DetalleOT" ThisKey="Id_OrdeTrabajo" OtherKey="Id_OrdeTrabajo" Type="DetalleOT" />
+      <Association Name="ClienteFinal_OrdenTrabajo" Member="ClienteFinal" ThisKey="Id_ClienteFinal" OtherKey="Id_ClienteFinal" Type="ClienteFinal" IsForeignKey="true" />
+      <Association Name="Tecnologia_OrdenTrabajo" Member="Tecnologia" ThisKey="Id_Tecnologia" OtherKey="Id_Tecnologia" Type="Tecnologia" IsForeignKey="true" />
+      <Association Name="TipoTrabajo_OrdenTrabajo" Member="TipoTrabajo" ThisKey="Id_TipoTrabajo" OtherKey="Id_TipoTrabajo" Type="TipoTrabajo" IsForeignKey="true" />
+      <Association Name="Usuario_OrdenTrabajo" Member="Usuario" ThisKey="Id_Usuario" OtherKey="Id_Usuario" Type="Usuario" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Pais" Member="Pais">
+    <Type Name="Pais">
+      <Column Name="Id_Pais" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Pai_Nombre" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Pai_Estado" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Association Name="Pais_Provincia" Member="Provincia" ThisKey="Id_Pais" OtherKey="Id_Pais" Type="Provincia" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Perfil" Member="Perfil">
+    <Type Name="Perfil">
+      <Column Name="Id_Perfil" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Per_Nombre" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Per_Descripcion" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Per_Estado" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Association Name="Perfil_Usuario" Member="Usuario" ThisKey="Id_Perfil" OtherKey="Id_Perfil" Type="Usuario" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Provincia" Member="Provincia">
+    <Type Name="Provincia">
+      <Column Name="Id_Provincia" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Prov_Nombre" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Prov_Estado" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="Id_Pais" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Provincia_Ciudad" Member="Ciudad" ThisKey="Id_Provincia" OtherKey="Id_Provincia" Type="Ciudad" />
+      <Association Name="Pais_Provincia" Member="Pais" ThisKey="Id_Pais" OtherKey="Id_Pais" Type="Pais" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Tecnologia" Member="Tecnologia">
+    <Type Name="Tecnologia">
+      <Column Name="Id_Tecnologia" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Tec_Nombre" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Tec_Descripcion" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Tec_Estado" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="Id_TipoCategoria" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Id_Operadora" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Tecnologia_BodegaMateriales" Member="BodegaMateriales" ThisKey="Id_Tecnologia" OtherKey="Id_Tecnologia" Type="BodegaMateriales" />
+      <Association Name="Tecnologia_OrdenTrabajo" Member="OrdenTrabajo" ThisKey="Id_Tecnologia" OtherKey="Id_Tecnologia" Type="OrdenTrabajo" />
+      <Association Name="Operadora_Tecnologia" Member="Operadora" ThisKey="Id_Operadora" OtherKey="Id_Operadora" Type="Operadora" IsForeignKey="true" />
+      <Association Name="Tipo_Categoria_Tecnologia" Member="Tipo_Categoria" ThisKey="Id_TipoCategoria" OtherKey="Id_TipoCategoria" Type="Tipo_Categoria" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Tipo_Categoria" Member="Tipo_Categoria">
+    <Type Name="Tipo_Categoria">
+      <Column Name="Id_TipoCategoria" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Tip_Numero" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Tip_Estado" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Association Name="Tipo_Categoria_Tecnologia" Member="Tecnologia" ThisKey="Id_TipoCategoria" OtherKey="Id_TipoCategoria" Type="Tecnologia" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TipoMaterial" Member="TipoMaterial">
+    <Type Name="TipoMaterial">
+      <Column Name="Id_TipoMaterial" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TMat_Nombre" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="TMat_Estado" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Association Name="TipoMaterial_Materiales" Member="Materiales" ThisKey="Id_TipoMaterial" OtherKey="Id_TipoMaterial" Type="Materiales" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TipoTrabajo" Member="TipoTrabajo">
+    <Type Name="TipoTrabajo">
+      <Column Name="Id_TipoTrabajo" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Ttrab_Nombre" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Ttrab_Estado" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Association Name="TipoTrabajo_OrdenTrabajo" Member="OrdenTrabajo" ThisKey="Id_TipoTrabajo" OtherKey="Id_TipoTrabajo" Type="OrdenTrabajo" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserActivation" Member="UserActivation">
+    <Type Name="UserActivation">
+      <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ActivationCode" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Usuario" Member="Usuario">
+    <Type Name="Usuario">
+      <Column Name="Id_Usuario" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Usu_Cedula" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Usu_Apellido" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Usu_Nombre" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Usu_Direccion" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Usu_Correo" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Usu_Telefono" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Usu_FechaCreacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Usu_Username" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Usu_Clave" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Usu_Estado" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="Id_Perfil" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Usu_LastLoginDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Usuario_DetalleOT_Usuarios" Member="DetalleOT_Usuarios" ThisKey="Id_Usuario" OtherKey="Id_Usuario" Type="DetalleOT_Usuarios" />
+      <Association Name="Usuario_OrdenTrabajo" Member="OrdenTrabajo" ThisKey="Id_Usuario" OtherKey="Id_Usuario" Type="OrdenTrabajo" />
+      <Association Name="Perfil_Usuario" Member="Perfil" ThisKey="Id_Perfil" OtherKey="Id_Perfil" Type="Perfil" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Contacto" Member="Contacto">
+    <Type Name="Contacto">
+      <Column Name="Id_Contacto" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Cont_Nombre" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Cont_Estado" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Column Name="Id_ClienteExterno" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="ClienteExterno_Contacto" Member="ClienteExterno" ThisKey="Id_ClienteExterno" OtherKey="Id_ClienteExterno" Type="ClienteExterno" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ClienteExterno" Member="ClienteExterno">
+    <Type Name="ClienteExterno">
+      <Column Name="Id_ClienteExterno" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CExt_Nombre" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CExt_Direccion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CExt_Telefono" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="CExt_FechaCreacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CExt_Estado" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
+      <Association Name="ClienteExterno_Clientes_Operadora" Member="Clientes_Operadora" ThisKey="Id_ClienteExterno" OtherKey="Id_ClienteExterno" Type="Clientes_Operadora" />
+      <Association Name="ClienteExterno_Contacto" Member="Contacto" ThisKey="Id_ClienteExterno" OtherKey="Id_ClienteExterno" Type="Contacto" />
+    </Type>
+  </Table>
+  <Table Name="dbo.View_sucursales" Member="View_sucursales">
+    <Type Name="View_sucursales">
+      <Column Name="Id_ClientesCiudad" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Cli_Nombre" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CCiu_NombreSucursal" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CCiu_Direccion" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="Ciu_Nombre" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Id_ClienteFinal" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Function Name="dbo.sp_sucursal_por_cliente" Method="sp_sucursal_por_cliente">
+    <Parameter Name="id_ClienteFinal" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_sucursal_por_clienteResult">
+      <Column Name="Id_ClientesCiudad" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Cli_Nombre" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CCiu_NombreSucursal" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CCiu_Direccion" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="Ciu_Nombre" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Id_ClienteFinal" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+</Database>

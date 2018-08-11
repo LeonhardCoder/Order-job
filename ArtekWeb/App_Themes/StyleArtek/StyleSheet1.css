@@ -1,0 +1,13 @@
+﻿.grid td{border:none;border-bottom:1px solid #ccc;padding:5px 0;text-indent:6px}
+.grid tr:hover{background-color:#e1e1e1;color:#363535}
+.grid a:link{color:#007cb0;font-weight:700;padding-right:5px}
+.banda a:link{color:#FFF}
+.bandapie{background-color:#dbdbdb;color:#4d4d4d;font-weight:700;height:22px}
+.fila{background-color:#F8F8F8}
+.gridPlana td,th{border:none;border-bottom:1px solid #ccc;border-top:1px solid #ccc;padding:5px}
+.gridPlana th:first-child{border-radius:8px 0 0 0}
+.gridPlana th:last-child{border-radius:0 8px 0 0}
+.grid,.gridPlana{border:hidden}
+.banda,.gridPlana th{background-color:#4d4d4d;color:#faf9f5;font-weight:700;height:22px}
+.boton{font-size:8pt;background: no-repeat;color:#C8C8C8;height:26px;width:100px}
+.boton:hover{background: no-repeat -1px -25px}

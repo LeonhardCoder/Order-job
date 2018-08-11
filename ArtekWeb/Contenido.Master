@@ -1,0 +1,34 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Contenido.master.cs" Inherits="ArtekWeb.Contenido"  %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajax" %>
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+         <link href="~/Content/bootstrap.css" rel="stylesheet" />
+         <link href="~/Content/bootstrap-grid.css" rel="stylesheet" /> 
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+       <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+           <asp:ScriptManager ID="ScriptManager1" runat="server">
+           </asp:ScriptManager>
+
+           <ajax:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
+           </ajax:ToolkitScriptManager>
+        
+        </asp:ContentPlaceHolder>
+        <div>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server" >
+        
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+</body>
+</html>

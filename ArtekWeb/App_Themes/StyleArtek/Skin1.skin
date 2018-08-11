@@ -1,0 +1,33 @@
+<%--
+Plantilla de máscara predeterminada. Las siguientes máscaras se proporcionan sólo como ejemplos.
+
+1. Máscara de control con nombre. SkinId debería definirse de forma única porque
+no se permite que haya varios SkinId por tipo de control en el mismo tema.
+
+<asp:GridView runat="server" SkinId="gridviewSkin" BackColor="White" >
+   <AlternatingRowStyle BackColor="Blue" />
+</asp:GridView>
+
+2. Máscara predeterminada. Skinid no está definido Sólo se permite 
+   una máscara de control por tipo de control en el mismo tema.
+
+<asp:Image runat="server" ImageUrl="~/images/image1.jpg" />
+--%>
+<asp:GridView runat="server" CssClass="grid">
+<HeaderStyle CssClass="banda"/>
+<RowStyle CssClass="fila"/>
+<AlternatingRowStyle CssClass="filaalternativa" />
+<EditRowStyle BackColor="#999999" />
+<SelectedRowStyle BackColor="#dbdbdb" ForeColor="#000000" />
+<PagerStyle />	
+<FooterStyle CssClass="bandapie" />
+</asp:GridView>
+
+<asp:Button runat="server" CssClass="btn btn-primary"/>
+<asp:TextBox runat="server" Forecolor= "#373737"/>
+<asp:DropDownList runat="server" Height="22px" Width="199px" > </asp:DropDownList>
+<asp:RequiredFieldValidator runat="server" ErrorMessage="*" Font-Size="14pt"></asp:RequiredFieldValidator>
+<asp:Label runat="server" ForeColor="black" Font-Size=8pt Font-Names="Tahoma"/>
+<asp:ListBox runat="server" Height="255px" Width="234px" ></asp:ListBox>
+<asp:RadioButtonList runat="server" Width="142px"> </asp:RadioButtonList>
+<asp:Panel runat="server" BackColor="white" HorizontalAlign="Left"></asp:Panel>

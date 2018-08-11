@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArtekWeb", "ArtekWeb\ArtekWeb.csproj", "{8CBA28FC-E726-4958-B504-059D2EDEAF09}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccesoDatos", "AccesoDatos\AccesoDatos.csproj", "{57901564-AAD4-45B2-AFA1-CCBF2190EFED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogicaNegocio", "LogicaNegocio\LogicaNegocio.csproj", "{951EAF00-DA3E-47F4-A327-BC22E0C1839D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8CBA28FC-E726-4958-B504-059D2EDEAF09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CBA28FC-E726-4958-B504-059D2EDEAF09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CBA28FC-E726-4958-B504-059D2EDEAF09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CBA28FC-E726-4958-B504-059D2EDEAF09}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57901564-AAD4-45B2-AFA1-CCBF2190EFED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57901564-AAD4-45B2-AFA1-CCBF2190EFED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57901564-AAD4-45B2-AFA1-CCBF2190EFED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57901564-AAD4-45B2-AFA1-CCBF2190EFED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{951EAF00-DA3E-47F4-A327-BC22E0C1839D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{951EAF00-DA3E-47F4-A327-BC22E0C1839D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{951EAF00-DA3E-47F4-A327-BC22E0C1839D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{951EAF00-DA3E-47F4-A327-BC22E0C1839D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
